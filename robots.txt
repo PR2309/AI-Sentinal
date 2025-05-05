@@ -1,0 +1,12 @@
+# robots.txt for AI Safety Incident Dashboard
+
+User-agent: *
+Allow: /
+
+# Prevent crawling of source code folders if any
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /private/
+
+# Sitemap (if you have one, update the URL accordingly)
+# Sitemap: https://pr2309.github.io/AI-Sentinal/sitemap.xml
