@@ -47,8 +47,10 @@ return (
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
                 <option value="High">High</option>
-            </select>
-            <button type="submit">Submit</button>
+            </select><br/>
+            <div className="form-actions">
+                <button type="submit">Submit</button>    
+            </div>
         </form>
         </>
     );

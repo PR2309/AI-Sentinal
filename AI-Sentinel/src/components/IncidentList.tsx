@@ -46,7 +46,9 @@ return (
                         <div>
                             <strong>{incident.title}</strong> – <em>{incident.severity}</em> –{" "}
                                 {new Date(incident.reported_at).toLocaleString()}
-                                <button onClick={() => toggleDetails(incident.id)}>View Details</button>
+                                <div>
+                                    <button className="form-actions" onClick={() => toggleDetails(incident.id)}>View&nbsp;Details</button>
+                                </div>
                         </div>
                         {expandedId === incident.id && (
                             <p className="description">{incident.description}</p>

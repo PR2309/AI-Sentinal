@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import axios from 'axios';
+import { useState, useEffect } from 'react'
 import { Incident } from './types/incidents';
 import IncidentList from './components/IncidentList';
 import IncidentForm from "./components/IncidentForm";
 import './App.css'
+// import Navbar from './components/Navbar';
 
 const initialIncidents: Incident[] = [
   {
@@ -31,6 +31,14 @@ const initialIncidents: Incident[] = [
 
 function App() {
   const [incidents, setIncidents] = useState<Incident[]>([...initialIncidents]);
+  const [theme, setTheme] = useState('default');
+
+  useEffect(() => {
+    document.body.className = '';
+    if (theme !== 'default') {
+      document.body.classList.add(theme);
+    }
+  }, [theme]);
 
   const handleNewIncident = async (incident: Omit<Incident, "reported_at">) => {
     const newIncident = { ...incident, reported_at: new Date().toISOString() };
@@ -39,11 +47,25 @@ function App() {
 
   return (
     <>
-      <div className="container">
-        <h1>AI Safety Incident Dashboard</h1>
-        <IncidentForm onSubmit={handleNewIncident} />
-        <IncidentList incidents={incidents} />
+      {/* <Navbar/> */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem' }}>
+        <h2>AI Safety Incident Dashboard</h2>
+        <select id="theme" value={theme} onChange={(e) => setTheme(e.target.value)}>
+          <option value="default">No Theme</option>
+          <option value="light">Light Theme</option>
+          <option value="dark">Dark Theme</option>
+        </select>
       </div>
+      {/* <h1>AI Safety Incident Dashboard</h1> */}
+        <div className='container'>
+        <IncidentList incidents={incidents} />
+        </div><br/>
+        <div className='container'>
+          <IncidentForm onSubmit={handleNewIncident} />
+        </div>
+        <footer className="footer">
+          <p>&copy; 2025 AI Sentinal. All rights reserved.</p>
+        </footer>
     </>
   );
 };
